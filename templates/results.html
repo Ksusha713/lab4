@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | IPGeoFinder</title>
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="logo">IPGeoFinder</div>
+            <ul class="sidebar-menu">
+                <li class="active">Dashboard</li>
+                <li>New IP Search</li>
+                <li>Search History</li>
+                <li>API Documentation</li>
+                <li>Settings</li>
+                <li><a href="/logout" class="btn btn-primary">Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="dashboard-header">
+                <div>
+                    <h1>Welcome back, {{user_data}}</h1>
+                    <p>Here are your recent IP API usage statistics.</p>
+                </div>
+                
+                <div class="streak-widget">
+                    <div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: bold; text-transform: uppercase;">API Status</div>
+                        <div class="streak-number"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-title">Total IP Searches</div>
+                    <div class="stat-value purple"></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Unique Countries Found</div>
+                    <div class="stat-value"></div>
+                </div>
+            </div>
+
+            <h2 style="margin-bottom: 20px; color: var(--sidebar-bg);">Latest Search Results</h2>
+            {% if user_history %}
+                {% for record in user_history %}
+                <div class="course-card">
+                    <div class="course-info">
+                        <h3>{{ record.address }}</h3>
+                        <p><strong>Country: {{record.geolocation.country}}</strong> </br> <strong>City: {{record.geolocation.city}}</strong></p>
+                        <div style="margin-bottom: 8px; font-weight: bold; color: var(--primary-purple); font-size: 0.9rem;">ISP: {{record.geolocation.timezone}}</div>
+                        <div style="margin-bottom: 8px; font-weight: bold; color: var(--primary-purple); font-size: 0.9rem;">Coordinates: {{record.geolocation.lat}} {{record.geolocation.lon}}</div>
+                        <div class="progress-track">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            {%endif%}
+        </main>
+    </div>
+
+</body>
+</html>

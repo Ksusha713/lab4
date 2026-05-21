@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | IPGeoFinder</title>
+    <link href="/static/styles.css" rel="stylesheet">
+</head>
+<body class="auth-body">
+
+    <div class="auth-container">
+        <a href="/" class="logo-link">IPGeoFinder</a>
+        
+        <div class="auth-card">
+            <h2>Sign Up</h2>
+            <p>Create an account to start using the Geolocation API!</p>
+            {% if error %}
+            <div style="color: #D63031; padding: 10px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-weight: bold;">
+                {{ error }}
+            </div>
+            {% endif %}
+            <form action="/signup" method="post">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Repeat the password</label>
+                    <input type="password" id="password" name="repeat_password" placeholder="Repeat your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary auth-btn">Sign up</button>
+            </form>
+            <div class="auth-footer">
+                Already have an account? <a href="/login">Log in</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

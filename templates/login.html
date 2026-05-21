@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | IPGeoFinder</title>
+    <link href="/static/styles.css" rel="stylesheet">
+</head>
+<body class="auth-body">
+
+    <div class="auth-container">
+        <a href="/" class="logo-link">IPGeoFinder</a>
+        
+        <div class="auth-card">
+            <h2>Welcome Back!</h2>
+            <p>Log in to search IP locations and view your history.</p>
+            {% if error %}
+            <div style="color: #D63031; padding: 10px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-weight: bold;">
+                {{ error }}
+            </div>
+            {% endif %}
+            <form action="/login" method="post">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                
+                <div class="form-actions">
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary auth-btn">Log In</button>
+            </form>
+            
+            <div class="auth-footer">
+                Don't have an account? <a href="/signup">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
