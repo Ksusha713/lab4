@@ -1,10 +1,5 @@
 import bcrypt
 from motor.motor_asyncio import AsyncIOMotorClient
-from datetime import datetime
-from models.data import Data, GeolocationData
-from models.users import Users
-from fastapi import Form
-from typing import Annotated
 
 MONGO_URL = "mongodb://127.0.0.1:27017"
 client = AsyncIOMotorClient(MONGO_URL)
