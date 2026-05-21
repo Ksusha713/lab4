@@ -33,7 +33,7 @@ async def all_users():
     return users_collection(users = await users_collection.find().to_list(10))
 
 async def user_history(username: str):
-    history = await data_collection.find({"username": username}).to_list(10)
+    history = await data_collection.find({"username": username}).sort([("time", -1)]).to_list(10)
     return history
 
 async def create_data(data: dict):
